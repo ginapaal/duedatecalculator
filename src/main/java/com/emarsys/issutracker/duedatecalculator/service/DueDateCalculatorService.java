@@ -36,6 +36,6 @@ public class DueDateCalculatorService {
     }
 
     private boolean isSubmitTimeWorkingHour(LocalDateTime submitDateTime) {
-        return submitDateTime.getHour() < 17 || submitDateTime.getHour() >= 9;
+        return submitDateTime.getHour() < 17 && submitDateTime.getHour() >= 9;
     }
 }
