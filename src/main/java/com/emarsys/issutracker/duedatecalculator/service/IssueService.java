@@ -24,6 +24,5 @@ public class IssueService {
                 .build();
         reportedIssues.putIfAbsent(reportedIssue.getUuid(), reportedIssue);
         log.info("Issue is reported and saved with UUID: {}", reportedIssue.getUuid());
-        System.out.println(reportedIssues.toString());
     }
 }
