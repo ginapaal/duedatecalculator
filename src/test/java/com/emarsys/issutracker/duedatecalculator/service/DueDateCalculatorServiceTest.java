@@ -2,10 +2,9 @@ package com.emarsys.issutracker.duedatecalculator.service;
 
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
+import static com.emarsys.issutracker.duedatecalculator.service.IssueCalculatorTestUtil.getLocalDateTime;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -47,10 +46,5 @@ class DueDateCalculatorServiceTest {
         assertThrows(OutOfTimeRangeException.class, () -> {
             dueDateCalculatorService.calculateDueDate(getLocalDateTime(7, 30, 17), 16);
         });
-    }
-
-    private LocalDateTime getLocalDateTime(int month, int dayOfMonth, int hours) {
-        return LocalDateTime.of(LocalDate.of(2020, month, dayOfMonth),
-                LocalTime.of(hours, 2, 0));
     }
 }
