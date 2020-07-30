@@ -1,6 +1,7 @@
 package com.emarsys.issutracker.duedatecalculator.controller;
 
 import com.emarsys.issutracker.duedatecalculator.service.DueDateCalculatorService;
+import com.emarsys.issutracker.duedatecalculator.service.OutOfTimeRangeException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,12 +16,16 @@ public class IssueTrackerController {
 
     private final DueDateCalculatorService dueDateCalculatorService;
 
-    @Value("${issue.tracker.turnaround.time}")
+    @Value("${issue.tracker.turnaround.time:1}")
     private int turnaroundTime;
 
     @PostMapping("/issue")
     public void submitIssue() {
         LocalDateTime submitDateTime = LocalDateTime.now();
-        dueDateCalculatorService.calculateDueDate(submitDateTime, turnaroundTime);
+        try {
+            dueDateCalculatorService.calculateDueDate(submitDateTime, turnaroundTime);
+        } catch (OutOfTimeRangeException e) {
+
+        }
     }
 }
