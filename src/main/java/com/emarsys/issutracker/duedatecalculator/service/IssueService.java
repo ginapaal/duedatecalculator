@@ -36,4 +36,9 @@ public class IssueService {
                 ", " +
                 calculatedDateTime.toLocalDate();
     }
+
+    public String getCalculatedResolveTimeOfIssue(UUID uuid) {
+        String calculatedResolveTime = reportedIssues.getOrDefault(uuid, new ReportedIssue()).getCalculatedResolveTime();
+        return calculatedResolveTime != null ? calculatedResolveTime : "No issue is reported with this id: " + uuid;
+    }
 }
